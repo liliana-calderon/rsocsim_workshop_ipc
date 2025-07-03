@@ -64,8 +64,9 @@ et al. 2022).
 # 1. Setup
 
 We recommend that you go through point 1 of this tutorial **before** the
-start of the workshop. If you have any questions/difficulties, please
-get in touch with the workshop coordinator (XXX).
+start of the workshop. If you have any questions/difficulties with the
+installation of `rsocsim`, please get in touch with the software
+developet [Tom Theile](mailto:theile@demogr.mpg.de)
 
 <img src="logo.png" align="right" width="200" />
 
@@ -74,14 +75,44 @@ get in touch with the workshop coordinator (XXX).
 Install the development version of `rsocsim` from GitHub
 (<https://github.com/MPIDR/rsocsim>). We may have made changes to the
 `rsocsim` package ahead of this workshop. To be on the safe side, if you
-had already installed the package, please uninstall it and and install
-it again.
+have already installed the package, please uninstall and reinstall it.
+You can install `rsocsim` from source, which requires a compiler, or
+from a binary package. Choose the option that suits you best. For this
+workshop, we will use version 1.5.9 of `rsocsim`
+
+### 1.1.1 Installation from source (requires a compiler)
+
+To get the latest version, you need to have a Rcpp compatible compiler
+installed and some way to install packages from Github. Install a Rcpp
+compatible compiler: - on Windows: RTools - on Mac: xcode-select
+–install - on Linux: sudo apt-get install r-base-dev
+
+To install packages from Github, you can use the
+[`remotes`](https://cran.r-project.org/web/packages/remotes/index.html)
+or
+[`devtools`](https://cran.r-project.org/web/packages/devtools/index.html)
+packages.
 
 ``` r
 # remove.packages("rsocsim")
+# Using remotes
+remotes::install_github("MPIDR/rsocsim", ref='v1.5.9')
+
+# Using devtools
 # install.packages("devtools")
-devtools::install_github("MPIDR/rsocsim")
-# remotes::install_github("MPIDR/rsocsim", ref='v1.5.9')
+#devtools::install_github("MPIDR/rsocsim@v1.5.9")
+```
+
+### 1.1.2 Installation binary package
+
+Download the correct binary package from the [release section on
+Github](https://github.com/MPIDR/rsocsim/releases), version 1.5.9 We
+will use rsocsim_1.5.9.tgz Click here for
+(<https://github.com/MPIDR/rsocsim/releases/download/v1.5.9/rsocsim_1.5.9.tgz>).
+Then execute the following line in R and choose the downloaded file:
+
+``` r
+install.packages(file.choose(),repos=NULL,type="binary")
 ```
 
 Let’s see if everything is working fine. `rsocsim` has a simple built-in
@@ -110,7 +141,7 @@ rsocsim::socsim(folder,supfile,seed)
 ```
 
     ## [1] "Start run1simulationwithfile"
-    ## [1] "C:/Users/calderonbernal/socsim/socsim_sim_9958"
+    ## [1] "C:/Users/calderonbernal/socsim/socsim_sim_62"
     ## [1] "300"
     ## Start socsim
     ## start socsim main. MAXUYEARS: 200; MAXUMONTHS: 2400
@@ -148,17 +179,17 @@ rsocsim::socsim(folder,supfile,seed)
     ## Initial size of pop 8000  (living: 8000)
     ## ------------aa3s------------aa32New events generated for all living persons
     ## ------------b1month:  700 PopLive:  9414 Brths:  16 Dths:   0 Mrgs: 11 Dvs:  0 Mq: 3728 Fq:0 ti1: 0.3 ti2: 0.007000 0.5037
-    ## month:  800 PopLive: 10926 Brths:  12 Dths:   1 Mrgs:  6 Dvs:  0 Mq: 3890 Fq:0 ti1: 0.4 ti2: 0.008000 0.5287
-    ## month:  900 PopLive: 12260 Brths:  14 Dths:   0 Mrgs:  4 Dvs:  0 Mq: 4031 Fq:0 ti1: 0.6 ti2: 0.006000 0.3693
+    ## month:  800 PopLive: 10926 Brths:  12 Dths:   1 Mrgs:  6 Dvs:  0 Mq: 3890 Fq:0 ti1: 0.4 ti2: 0.007000 0.4626
+    ## month:  900 PopLive: 12260 Brths:  14 Dths:   0 Mrgs:  4 Dvs:  0 Mq: 4031 Fq:0 ti1: 0.5 ti2: 0.005000 0.3077
     ## month: 1000 PopLive: 13397 Brths:   9 Dths:   2 Mrgs:  4 Dvs:  0 Mq: 4134 Fq:0 ti1: 0.7 ti2: 0.006000 0.3511
-    ## month: 1100 PopLive: 14172 Brths:  16 Dths:   6 Mrgs:  6 Dvs:  0 Mq: 4135 Fq:0 ti1: 0.9 ti2: 0.009000 0.5264
-    ## month: 1200 PopLive: 14518 Brths:  13 Dths:  11 Mrgs:  6 Dvs:  0 Mq: 4000 Fq:0 ti1: 1.0 ti2: 0.006000 0.3750
-    ## month: 1300 PopLive: 14323 Brths:  14 Dths:  20 Mrgs:  4 Dvs:  0 Mq: 3891 Fq:0 ti1: 1.2 ti2: 0.008000 0.5284
-    ## month: 1400 PopLive: 13816 Brths:  13 Dths:  15 Mrgs:  4 Dvs:  0 Mq: 3746 Fq:0 ti1: 1.4 ti2: 0.007000 0.4988
-    ## month: 1500 PopLive: 13330 Brths:  11 Dths:  11 Mrgs:  5 Dvs:  0 Mq: 3679 Fq:0 ti1: 1.5 ti2: 0.009000 0.6649
-    ## month: 1600 PopLive: 12944 Brths:  10 Dths:  15 Mrgs:  4 Dvs:  0 Mq: 3593 Fq:0 ti1: 1.7 ti2: 0.007000 0.5422
-    ## month: 1700 PopLive: 12525 Brths:  10 Dths:  20 Mrgs:  5 Dvs:  0 Mq: 3436 Fq:0 ti1: 1.8 ti2: 0.006000 0.5082
-    ## month: 1800 PopLive: 12009 Brths:  10 Dths:  16 Mrgs:  7 Dvs:  0 Mq: 3275 Fq:0 ti1: 1.9 ti2: 0.008000 0.7459
+    ## month: 1100 PopLive: 14172 Brths:  16 Dths:   6 Mrgs:  6 Dvs:  0 Mq: 4135 Fq:0 ti1: 0.8 ti2: 0.008000 0.4679
+    ## month: 1200 PopLive: 14518 Brths:  13 Dths:  11 Mrgs:  6 Dvs:  0 Mq: 4000 Fq:0 ti1: 1.0 ti2: 0.007000 0.4375
+    ## month: 1300 PopLive: 14323 Brths:  14 Dths:  20 Mrgs:  4 Dvs:  0 Mq: 3891 Fq:0 ti1: 1.1 ti2: 0.007000 0.4624
+    ## month: 1400 PopLive: 13816 Brths:  13 Dths:  15 Mrgs:  4 Dvs:  0 Mq: 3746 Fq:0 ti1: 1.3 ti2: 0.007000 0.4988
+    ## month: 1500 PopLive: 13330 Brths:  11 Dths:  11 Mrgs:  5 Dvs:  0 Mq: 3679 Fq:0 ti1: 1.4 ti2: 0.008000 0.5911
+    ## month: 1600 PopLive: 12944 Brths:  10 Dths:  15 Mrgs:  4 Dvs:  0 Mq: 3593 Fq:0 ti1: 1.6 ti2: 0.007000 0.5422
+    ## month: 1700 PopLive: 12525 Brths:  10 Dths:  20 Mrgs:  5 Dvs:  0 Mq: 3436 Fq:0 ti1: 1.7 ti2: 0.006000 0.5082
+    ## month: 1800 PopLive: 12009 Brths:  10 Dths:  16 Mrgs:  7 Dvs:  0 Mq: 3275 Fq:0 ti1: 1.8 ti2: 0.008000 0.7459
     ## 
     ## 
     ## Socsim Main Done
@@ -442,12 +473,12 @@ head(opop)
 ```
 
     ##   pid fem group nev dob mom pop nesibm nesibp lborn marid mstat  dod    fmult
-    ## 1   1   0     1  65 929   0   0      0      0     0     0     1 1836 0.000000
-    ## 2   2   0     1  65 690   0   0      0      0 11914  1491     4 1620 0.000000
-    ## 3   3   0     1  65 573   0   0      0      0     0     0     1 1475 0.000000
-    ## 4   4   0     1  65 707   0   0      0      0 14904  1328     4 1628 0.000000
-    ## 5   5   1     1  65 556   0   0      0      0     0     0     1 1638 2.042263
-    ## 6   6   1     1  65 806   0   0      0      0 15048   471     3 1757 0.758478
+    ## 1   1   1     1  65 766   0   0      0      0 13533   919     4 1513 2.042263
+    ## 2   2   1     1  65 629   0   0      0      0 10111   111     3 1566 0.758478
+    ## 3   3   0     1  65 582   0   0      0      0     0     0     1 1326 0.000000
+    ## 4   4   1     1  65 946   0   0      0      0 21475  3031     4 1548 2.071625
+    ## 5   5   0     1  65 765   0   0      0      0 14995   613     4 1326 0.000000
+    ## 6   6   1     1  65 695   0   0      0      0 15679   170     3 1704 0.696812
 
 The marriage file (.omar) contains one record for each marriage. Each
 marriage record provides the following information: marriage id number
@@ -462,12 +493,12 @@ head(omar)
 ```
 
     ##   mid wpid hpid dstart dend rend wprior hprior
-    ## 1   1 6123 4570   1001 1500    3      0      0
-    ## 2   2 6306 2836   1001 1437    3      0      0
-    ## 3   3 7030 2012   1001 1489    3      0      0
-    ## 4   4 7256 9786   1001 1429    3      0      0
-    ## 5   5 6659 3087   1001 1272    3      0      0
-    ## 6   6 4080  723   1001 1442    3      0      0
+    ## 1   1 4364 6350   1001 1354    3      0      0
+    ## 2   2 3913 7541   1001 1448    3      0      0
+    ## 3   3 3621 9985   1001 1136    3      0      0
+    ## 4   4  654 3647   1001 1142    3      0      0
+    ## 5   5 9832 2060   1001 1497    3      0      0
+    ## 6   6 2625 4467   1001 1410    3      0      0
 
 ## 2.5. Estimate age-specific rates from the SOCSIM microsimulation
 
@@ -890,7 +921,7 @@ kinloss_data %>%
   theme_bw() 
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-9-1.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
 
 This graph shows the evolution of rates of kin loss for women in recent
 decades. As it could be expected for this age group, the highest rates
@@ -914,7 +945,7 @@ scale_x_continuous(breaks = seq(1950, 2020,by = 10))+
   theme_bw() 
 ```
 
-<img src="README_files/figure-gfm/unnamed-chunk-10-1.png" style="display: block; margin: auto;" />
+<img src="README_files/figure-gfm/unnamed-chunk-11-1.png" style="display: block; margin: auto;" />
 
 In fact, grandparents and, to a lesser extent, parents are the relatives
 whose availability has increased significantly in recent decades. On the

@@ -32,19 +32,40 @@ SOCSIM has been used extensively in social science research to study, among othe
 
 # 1. Setup
 
-We recommend that you go through point 1 of this tutorial **before** the start of the workshop. If you have any questions/difficulties, please get in touch with the workshop coordinator (XXX).
+We recommend that you go through point 1 of this tutorial **before** the start of the workshop. If you have any questions/difficulties with the installation of `rsocsim`, please get in touch with the software developet [Tom Theile](mailto:theile@demogr.mpg.de)
 
 <img src="logo.png" align="right" width="200" />
 
 ## 1.1. Installation
 
-Install the development version of `rsocsim` from GitHub (https://github.com/MPIDR/rsocsim). We may have made changes to the `rsocsim` package ahead of this workshop. To be on the safe side, if you had already installed the package, please uninstall it and and install it again.
+Install the development version of `rsocsim` from GitHub (https://github.com/MPIDR/rsocsim). We may have made changes to the `rsocsim` package ahead of this workshop. To be on the safe side, if you have already installed the package, please uninstall and reinstall it. You can install `rsocsim` from source, which requires a compiler, or from a binary package. Choose the option that suits you best. For this workshop, we will use version 1.5.9 of `rsocsim`
+
+### 1.1.1 Installation from source (requires a compiler)
+
+To get the latest version, you need to have a Rcpp compatible compiler installed and some way to install packages from Github.
+Install a Rcpp compatible compiler:
+- on Windows: RTools
+- on Mac: xcode-select --install
+- on Linux: sudo apt-get install r-base-dev
+
+To install packages from Github, you can use the [`remotes`](https://cran.r-project.org/web/packages/remotes/index.html) or [`devtools`](https://cran.r-project.org/web/packages/devtools/index.html) packages. 
 
 ```{r, eval=FALSE}
 # remove.packages("rsocsim")
+# Using remotes
+remotes::install_github("MPIDR/rsocsim", ref='v1.5.9')
+
+# Using devtools
 # install.packages("devtools")
-devtools::install_github("MPIDR/rsocsim")
-# remotes::install_github("MPIDR/rsocsim", ref='v1.5.9')
+#devtools::install_github("MPIDR/rsocsim@v1.5.9")
+```
+
+### 1.1.2 Installation binary package
+
+Download the correct binary package from the [release section on Github](https://github.com/MPIDR/rsocsim/releases), version 1.5.9 We will use rsocsim_1.5.9.tgz Click here for (https://github.com/MPIDR/rsocsim/releases/download/v1.5.9/rsocsim_1.5.9.tgz). Then execute the following line in R and choose the downloaded file:
+```{r, eval=FALSE}
+
+install.packages(file.choose(),repos=NULL,type="binary")
 ```
 
 Let's see if everything is working fine. `rsocsim` has a simple built-in simulation that you can run to see if the package was installed correctly. For now, let's run the code without focusing on the technical details: 
