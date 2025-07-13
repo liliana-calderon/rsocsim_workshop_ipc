@@ -29,7 +29,7 @@
 progress/
 
 # Rate and presim files (created with script 0)
-rates/*
+#rates/*
 presim*
 
 # Simulation results
